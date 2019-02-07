@@ -1,11 +1,7 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
- * Question 3 : add new stack when exceeds capacity
+ * Question 3 : build a set of stacks - add new stack when exceeds capacity
  * push and pop should work just like a normal stack
  */
 public class SetOfStacks {
@@ -18,7 +14,7 @@ public class SetOfStacks {
             top = stack;
         } else if (!top.hasCapacity()) {
             Stack stack = new Stack(5);
-            top.setNext(stack);
+            stack.setNext(top);
             top = stack;
         }
         top.push(data);
@@ -27,10 +23,12 @@ public class SetOfStacks {
     public Object pop() {
         if (top == null) {
             return null;
-        } else if (top.pop() == null) {
+        }
+        Object toReturn = top.pop();
+        if (top.peek() == null) {
             top = top.getNext(); // previous stack
         }
-        return top.pop();
+        return toReturn;
     }
 
     public Object popAt(int stackNo) {

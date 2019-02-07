@@ -21,7 +21,7 @@ public class Stack {
     }
 
     public Object peek() {
-        return top.getData();
+        return top != null ? top.getData() : null;
     }
 
     /****** for set of stack question ************/
