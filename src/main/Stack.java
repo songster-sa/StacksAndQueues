@@ -49,4 +49,15 @@ public class Stack {
     public boolean hasCapacity() {
         return capacity > 0;
     }
+
+    public boolean isEmpty() {
+        return top == null;
+    }
+
+    public void printStack() {
+        while (!this.isEmpty()) {
+            System.out.print(this.pop() + ",");
+        }
+        System.out.println();
+    }
 }
