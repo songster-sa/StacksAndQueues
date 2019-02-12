@@ -41,6 +41,42 @@ public class SortStack {
         solutionOne(input);
     }
 
+    public void solutionTwo(Stack input) {
+        if (input.isEmpty()) {
+            return;
+        }
+
+        while (!input.isEmpty()) {
+            Object data = input.pop();
+
+            // add to result stack
+
+            if (result.isEmpty()) {
+                result.push(data);
+                continue;
+            }
+
+            Object top = result.peek();
+            if ((int) top <= (int) data) {
+                result.push(data);
+                continue;
+            } else {
+                // need to push in middle somewhere
+                count = 0;
+                while (top != null && (int) top > (int) data) {
+                    count++;
+                    input.push(result.pop());
+                    top = result.peek();
+                }
+                result.push(data);
+                while (count > 0) {
+                    count--;
+                    result.push(input.pop());
+                }
+            }
+        }
+    }
+
     public Stack getResult() {
         return result;
     }
